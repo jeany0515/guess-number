@@ -17,8 +17,3 @@
 - 如果第二球也没有把球瓶全部击倒的话，那分数就是第一球加第二球倒的瓶数，没有奖励（bonus），再接着打下一格。依此类推。
 - 第十轮有机会扔三次球。如果在第十轮出现STRIKE或者SPARE，则球手可再加打第三球。
 - 全部十轮的得分相加就等于这一局的总得分。
-
-
-## 参考资料
-- [JUnit 5用户指南](https://sjyuan.cc/junit5/user-guide-cn/)
-- [Gradle 用户指南](https://docs.gradle.org/current/userguide/userguide.html)
