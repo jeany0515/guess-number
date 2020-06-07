@@ -34,6 +34,14 @@ class BowlingGameTest {
         assertThat(bowlingGame.scoring()).isEqualTo(67);
     }
 
+    @Test
+    void should_involve_STRIKE_bonus_when_scoring_given_one_STRIKE_occurs() {
+        bowlingGame.roll(10);
+
+        rolls(3, 18);
+        assertThat(bowlingGame.scoring()).isEqualTo(70);
+    }
+
 
     private void rolls(int score,int times) {
         for (int rollIndex = 0; rollIndex < times; rollIndex++) {
