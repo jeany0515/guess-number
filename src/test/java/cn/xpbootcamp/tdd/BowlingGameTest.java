@@ -16,4 +16,15 @@ class BowlingGameTest {
 
         assertThat(bowlingGame.scoring()).isEqualTo(0);
     }
+
+    @Test
+    void should_sum_all_rolls_when_scoring_given_every_roll_is_common_as_3() {
+        BowlingGame bowlingGame = new BowlingGame();
+
+        for (int rollIndex = 0; rollIndex < 20; rollIndex++) {
+            bowlingGame.roll(3);
+        }
+
+        assertThat(bowlingGame.scoring()).isEqualTo(60);
+    }
 }

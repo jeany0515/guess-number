@@ -1,11 +1,16 @@
 package cn.xpbootcamp.tdd;
 
-public class BowlingGame {
-    public void roll(int pouredNumber) {
+import java.util.ArrayList;
+import java.util.List;
 
+public class BowlingGame {
+    private List<Integer> pouredNumbers = new ArrayList<>();
+
+    public void roll(int pouredNumber) {
+        pouredNumbers.add(pouredNumber);
     }
 
     public int scoring() {
-        return 0;
+        return pouredNumbers.stream().mapToInt(number -> number).sum();
     }
 }
