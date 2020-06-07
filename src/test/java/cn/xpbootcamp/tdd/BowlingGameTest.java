@@ -15,13 +15,13 @@ class BowlingGameTest {
 
     @Test
     void should_return_0_when_scoring_given_every_roll_is_0() {
-        rolls(0);
+        rolls(0, 20);
         assertThat(bowlingGame.scoring()).isEqualTo(0);
     }
 
     @Test
     void should_sum_all_rolls_when_scoring_given_every_roll_is_common_as_3() {
-        rolls(3);
+        rolls(3, 20);
         assertThat(bowlingGame.scoring()).isEqualTo(60);
     }
 
@@ -30,15 +30,13 @@ class BowlingGameTest {
         bowlingGame.roll(6);
         bowlingGame.roll(4);
 
-        for (int rollIndex = 0; rollIndex < 18; rollIndex++) {
-            bowlingGame.roll(3);
-        }
+        rolls(3, 18);
         assertThat(bowlingGame.scoring()).isEqualTo(67);
     }
 
 
-    private void rolls(int score) {
-        for (int rollIndex = 0; rollIndex < 20; rollIndex++) {
+    private void rolls(int score,int times) {
+        for (int rollIndex = 0; rollIndex < times; rollIndex++) {
             bowlingGame.roll(score);
         }
     }
