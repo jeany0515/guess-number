@@ -42,6 +42,12 @@ class BowlingGameTest {
         assertThat(bowlingGame.scoring()).isEqualTo(70);
     }
 
+    @Test
+    void should_sum_all_STRIKE_bonus_when_scoring_given_every_round_is_STRIKE() {
+        rolls(10, 12);
+        assertThat(bowlingGame.scoring()).isEqualTo(300);
+    }
+
 
     private void rolls(int score,int times) {
         for (int rollIndex = 0; rollIndex < times; rollIndex++) {
