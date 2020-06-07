@@ -25,6 +25,18 @@ class BowlingGameTest {
         assertThat(bowlingGame.scoring()).isEqualTo(60);
     }
 
+    @Test
+    void should_involve_SPARE_bonus_when_scoring_given_one_SPARE_occurs() {
+        bowlingGame.roll(6);
+        bowlingGame.roll(4);
+
+        for (int rollIndex = 0; rollIndex < 18; rollIndex++) {
+            bowlingGame.roll(3);
+        }
+        assertThat(bowlingGame.scoring()).isEqualTo(67);
+    }
+
+
     private void rolls(int score) {
         for (int rollIndex = 0; rollIndex < 20; rollIndex++) {
             bowlingGame.roll(score);

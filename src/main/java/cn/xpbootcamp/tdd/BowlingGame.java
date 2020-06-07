@@ -11,6 +11,19 @@ public class BowlingGame {
     }
 
     public int scoring() {
-        return pouredNumbers.stream().mapToInt(number -> number).sum();
+        int totalScore = 0;
+        int rollIndex = 0;
+        for (int round = 0; round < 10; round++) {
+            if (pouredNumbers.get(rollIndex) + pouredNumbers.get(rollIndex + 1) == 10) {
+                totalScore += 10;
+                totalScore += pouredNumbers.get(rollIndex + 2);
+                rollIndex += 2;
+            } else {
+                totalScore += pouredNumbers.get(rollIndex);
+                totalScore += pouredNumbers.get(rollIndex + 1);
+                rollIndex += 2;
+            }
+        }
+        return totalScore;
     }
 }
