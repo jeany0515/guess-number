@@ -14,8 +14,6 @@ class BowlingGameTest {
             bowlingGame.roll(0);
         }
 
-        int score = bowlingGame.scoring();
-
-        assertThat(score).isEqualTo(0);
+        assertThat(bowlingGame.scoring()).isEqualTo(0);
     }
 }
