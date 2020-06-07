@@ -15,22 +15,25 @@ public class BowlingGame {
         int rollIndex = 0;
         for (int round = 0; round < 10; round++) {
             if (isStrike(rollIndex)) {
-                totalScore += 10;
-                totalScore += pouredNumbers.get(rollIndex + 1);
-                totalScore += pouredNumbers.get(rollIndex + 2);
+                totalScore += (10 + getStrikeBonus(rollIndex));
                 rollIndex++;
             } else if (isSpare(rollIndex)) {
-                totalScore += 10;
-                totalScore += pouredNumbers.get(rollIndex + 2);
+                totalScore += (10 + getSpareBonus(rollIndex));
                 rollIndex += 2;
             } else {
-                totalScore += pouredNumbers.get(rollIndex);
-                totalScore += pouredNumbers.get(rollIndex + 1);
+                totalScore += (pouredNumbers.get(rollIndex) + pouredNumbers.get(rollIndex + 1));
                 rollIndex += 2;
             }
-
         }
         return totalScore;
+    }
+
+    private int getSpareBonus(int rollIndex) {
+        return pouredNumbers.get(rollIndex + 2);
+    }
+
+    private int getStrikeBonus(int rollIndex) {
+        return pouredNumbers.get(rollIndex + 1) + pouredNumbers.get(rollIndex + 2);
     }
 
     private boolean isStrike(int rollIndex) {
