@@ -14,7 +14,7 @@ public class BowlingGame {
         int totalScore = 0;
         int rollIndex = 0;
         for (int round = 0; round < 10; round++) {
-            if (pouredNumbers.get(rollIndex) == 10) {
+            if (isStrike(rollIndex)) {
                 totalScore += 10;
                 totalScore += pouredNumbers.get(rollIndex + 1);
                 totalScore += pouredNumbers.get(rollIndex + 2);
@@ -31,6 +31,10 @@ public class BowlingGame {
 
         }
         return totalScore;
+    }
+
+    private boolean isStrike(int rollIndex) {
+        return pouredNumbers.get(rollIndex) == 10;
     }
 
     private boolean isSpare(int rollIndex) {
