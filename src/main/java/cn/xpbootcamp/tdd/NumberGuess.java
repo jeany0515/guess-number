@@ -1,21 +1,15 @@
 package cn.xpbootcamp.tdd;
 
 public class NumberGuess {
-    private int size = 4;
+    private int randomSize;
     private int[] randomList;
 
-    public NumberGuess(int size) {
-        this.size = size;
-        RandomNumber randomNumber = new RandomNumber();
-        this.randomList = randomNumber.generate();
+    public NumberGuess(int[] randomList) {
+        this.randomSize = randomList.length;
+        this.randomList = randomList;
     }
 
     public String verify(int[] input) {
-        System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww");
-        System.out.println(this.randomList[0]);
-        System.out.println(this.randomList[1]);
-        System.out.println(this.randomList[2]);
-        System.out.println(this.randomList[3]);
         if (isLengthValidate(input) && !hasRepeatNumber(input)) {
             return getMatchResult(input);
         }
@@ -23,13 +17,13 @@ public class NumberGuess {
     }
 
     private boolean isLengthValidate(int[] input) {
-        return input.length == this.size;
+        return input.length == this.randomSize;
     }
 
     private boolean hasRepeatNumber(int[] input) {
         boolean hasRepeat = false;
-        for (int index = 0; index < this.size; index++) {
-            for (int compare = index + 1; compare < this.size; compare++) {
+        for (int index = 0; index < this.randomSize; index++) {
+            for (int compare = index + 1; compare < this.randomSize; compare++) {
                 if(input[index] == input[compare]) hasRepeat= true;
             }
         }
@@ -40,8 +34,8 @@ public class NumberGuess {
         int numberMatchCount = 0;
         int bothNumberAndPositionMatchCount = 0;
 
-        for (int compare = 0; compare < this.size; compare++) {
-            for (int randomIndex = 0; randomIndex < this.size; randomIndex++) {
+        for (int compare = 0; compare < this.randomSize; compare++) {
+            for (int randomIndex = 0; randomIndex < this.randomSize; randomIndex++) {
                 boolean isNumberMatch = input[compare] == this.randomList[randomIndex];
                 boolean isPositionMatch = compare == randomIndex;
                 if(isNumberMatch && !isPositionMatch) numberMatchCount++;
