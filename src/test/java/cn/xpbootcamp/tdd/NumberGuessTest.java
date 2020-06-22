@@ -80,10 +80,4 @@ class NumberGuessTest {
 
         assertThat(result).isEqualTo("1A2B");
     }
-
-//    private NumberGuess createRandomNumber(int[] randoms) {
-//        RandomNumber randomNumber = mock(RandomNumber.class);
-//        when(randomNumber.generate()).thenReturn(randoms);
-//        return new NumberGuess(randoms);
-//    }
 }
