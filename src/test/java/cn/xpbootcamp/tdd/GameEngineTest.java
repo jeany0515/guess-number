@@ -19,47 +19,36 @@ public class GameEngineTest {
     }
 
     @Test
-    void should_return_guess_result_with_game_not_status_and_wrong_message_when_play_game_given_guess_number_12() {
+    void should_return_wrong_input_when_play_game_given_guess_number_12() {
         int[] guessNumber = {1, 2};
 
-        GameResult gameResult = gameEngine.play(guessNumber);
+        String result = gameEngine.play(guessNumber);
 
-        assertThat(gameResult.getOutput()).isEqualTo("Wrong Input，Input again");
-        assertThat(gameResult.isGameOver()).isEqualTo(false);
+        assertThat(result).isEqualTo("Wrong Input，Input again");
     }
 
     @Test
-    void should_return_guess_result_with_game__over_and_output_when_play_game_given_guess_number_1234_and_random_1234() {
+    void should_return_1A2B_and_can_play_when_play_game_given_guess_number_1425_and_random_1234() {
+        int[] guessNumber = {1, 4, 2, 5};
+
+        String result = gameEngine.play(guessNumber);
+
+        assertThat(result).isEqualTo("1A2B");
+        assertThat(gameEngine.canPlay()).isEqualTo(true);
+    }
+
+    @Test
+    void should_return_4A0B_and_can_not_play_when_play_game_given_guess_number_1234_and_random_1234() {
         int[] guessNumber = {1, 2, 3, 4};
 
-        GameResult gameResult = gameEngine.play(guessNumber);
+        String result = gameEngine.play(guessNumber);
 
-        assertThat(gameResult.getOutput()).isEqualTo("4A0B");
-        assertThat(gameResult.isGameOver()).isEqualTo(true);
+        assertThat(result).isEqualTo("4A0B");
+        assertThat(gameEngine.canPlay()).isEqualTo(false);
     }
 
     @Test
-    void should_return_round_1_and_2_guess_fail_and_round_3_success_when_play_game_given_random_1234_and_guess_number_12_1245_1234() {
-        int[] guessNumberRound_1 = {1, 2};
-        int[] guessNumberRound_2 = {1, 2, 4, 5};
-        int[] guessNumberRound_3 = {1, 2, 3, 4};
-
-        GameResult gameResultRound_1 = gameEngine.play(guessNumberRound_1);
-        GameResult gameResultRound_2 = gameEngine.play(guessNumberRound_2);
-        GameResult gameResultRound_3 = gameEngine.play(guessNumberRound_3);
-
-        assertThat(gameResultRound_1.getOutput()).isEqualTo("Wrong Input，Input again");
-        assertThat(gameResultRound_1.isGameOver()).isEqualTo(false);
-
-        assertThat(gameResultRound_2.getOutput()).isEqualTo("2A1B");
-        assertThat(gameResultRound_2.isGameOver()).isEqualTo(false);
-
-        assertThat(gameResultRound_3.getOutput()).isEqualTo("4A0B");
-        assertThat(gameResultRound_3.isGameOver()).isEqualTo(true);
-    }
-
-    @Test
-    void should_return_game_over_after_6_round_when_play_game_given_random_1234_and_guess_number_1245_with_6_times() {
+    void should_return_can_not_play_after_6_round_when_play_game_given_no_round_success() {
         int[] guessNumber = {1, 2, 4, 5};
 
         gameEngine.play(guessNumber);
@@ -67,11 +56,9 @@ public class GameEngineTest {
         gameEngine.play(guessNumber);
         gameEngine.play(guessNumber);
         gameEngine.play(guessNumber);
-        GameResult gameResultRound_6 = gameEngine.play(guessNumber);
+        gameEngine.play(guessNumber);
 
-
-        assertThat(gameResultRound_6.getOutput()).isEqualTo("2A1B");
-        assertThat(gameResultRound_6.isGameOver()).isEqualTo(true);
+        assertThat(gameEngine.canPlay()).isEqualTo(false);
     }
 
 }

@@ -1,16 +1,21 @@
 package cn.xpbootcamp.tdd;
 
+import java.util.Arrays;
+
 public class GameEngine {
     private final static int ROUND = 6;
     private final static String WRONG_MSG = "Wrong Input，Input again";
+    private final static String SUCCESS_MSG = "4A0B";
     private int roundCount = 0;
     private int[] randoms;
+    private boolean isSuccess = false;
 
     public GameEngine(RandomGenerator randomGenerator) {
         this.randoms = randomGenerator.generate();
+        System.out.println("Random number is" + Arrays.toString(randoms));
     }
 
-    public GameResult play(int[] guessNumber) {
+    public String play(int[] guessNumber) {
         GuessNumberValidator guessNumberValidator = new GuessNumberValidator();
         String output = WRONG_MSG;
 
@@ -18,13 +23,13 @@ public class GameEngine {
              ComparisonEngine comparisonEngine = new ComparisonEngine();
              output = comparisonEngine.compare(guessNumber,randoms);
          }
+
          roundCount ++;
+         isSuccess = output.equals(SUCCESS_MSG);
+         return output;
+    }
 
-        boolean isGameOver = output.equals("4A0B") || roundCount == ROUND;
-        GameResult gameResult = new GameResult();
-        gameResult.setOutput(output);
-        gameResult.setGameOver(isGameOver);
-
-        return  gameResult;
+    public boolean canPlay() {
+        return roundCount != ROUND && !isSuccess;
     }
 }
